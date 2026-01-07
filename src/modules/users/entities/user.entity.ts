@@ -55,15 +55,15 @@ export class User {
   role: UserRole;
 
   @Column({ type: 'timestamp', nullable: true })
-  emailValidatedAt: Date | null;
+  emailVerifiedAt: Date | null;
 
   @Column({ type: 'varchar', nullable: true })
   @Exclude()
-  emailToken: string | null;
+  verificationCode: string | null;
 
   @Column({ type: 'timestamp', nullable: true })
   @Exclude()
-  emailTokenExpiry: Date | null;
+  verificationCodeExpiry: Date | null;
 
   @CreateDateColumn()
   createdAt: Date;

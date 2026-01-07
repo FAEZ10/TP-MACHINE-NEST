@@ -17,7 +17,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { QueryProjectsDto } from './dto/query-projects.dto';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { User } from '../users/entities/user.entity';
-import { PublicEndpoint } from '../../common/decorators/public-endpoint.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 
 @ApiTags('projects')
 @ApiBearerAuth()
@@ -26,7 +26,7 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get('public')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get list of published projects' })
   @ApiResponse({
     status: 200,
@@ -67,7 +67,7 @@ export class ProjectsController {
   }
 
   @Get('public/:id')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get published project by ID' })
   @ApiParam({ name: 'id', example: '123e4567-e89b-12d3-a456-426614174000' })
   @ApiResponse({
@@ -97,7 +97,7 @@ export class ProjectsController {
   }
 
   @Get('trending')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get trending projects' })
   @ApiResponse({
     status: 200,
@@ -118,7 +118,7 @@ export class ProjectsController {
   }
 
   @Get('latest')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get latest published projects' })
   @ApiResponse({
     status: 200,
@@ -139,7 +139,7 @@ export class ProjectsController {
   }
 
   @Get('search')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Search projects' })
   @ApiQuery({ name: 'q', example: 'SaaS', description: 'Search term' })
   @ApiResponse({
@@ -160,7 +160,7 @@ export class ProjectsController {
   }
 
   @Get('category/:category')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get projects by category' })
   @ApiParam({ name: 'category', example: 'SAAS', description: 'Project category' })
   @ApiResponse({
@@ -323,7 +323,7 @@ export class ProjectsController {
   }
 
   @Get(':id/upvotes')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get project upvotes' })
   @ApiParam({ name: 'id', example: '123e4567-e89b-12d3-a456-426614174000' })
   @ApiResponse({

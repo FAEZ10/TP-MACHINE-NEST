@@ -6,7 +6,7 @@ import { LoginDto } from './dto/login.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { Verify2FADto } from './dto/verify-2fa.dto';
 import { ResendEmailDto } from './dto/resend-email.dto';
-import { PublicEndpoint } from '../../common/decorators/public-endpoint.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -14,7 +14,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Register a new user' })
   @ApiResponse({
@@ -42,7 +42,7 @@ export class AuthController {
   }
 
   @Post('verify-email')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Verify user email address' })
   @ApiResponse({
@@ -70,7 +70,7 @@ export class AuthController {
   }
 
   @Post('login')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Login user (sends 2FA code)' })
   @ApiResponse({
@@ -98,7 +98,7 @@ export class AuthController {
   }
 
   @Post('verify-2fa')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Verify 2FA code and get JWT token' })
   @ApiResponse({
@@ -126,7 +126,7 @@ export class AuthController {
   }
 
   @Post('resend-verification-email')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Resend email verification token' })
   @ApiResponse({
@@ -154,7 +154,7 @@ export class AuthController {
   }
 
   @Post('resend-2fa-code')
-  @PublicEndpoint()
+  @Public()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Resend 2FA code' })
   @ApiResponse({

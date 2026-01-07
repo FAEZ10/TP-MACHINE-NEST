@@ -41,9 +41,9 @@ export class AuthService {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const emailToken = this.generateRandomCode();
-    const emailTokenExpiry = new Date();
-    emailTokenExpiry.setHours(emailTokenExpiry.getHours() + 24);
+    const verificationCode = this.generateRandomCode();
+    const verificationCodeExpiry = new Date();
+    verificationCodeExpiry.setHours(verificationCodeExpiry.getHours() + 24);
 
     const user = this.usersRepository.create({
       email,
@@ -51,12 +51,12 @@ export class AuthService {
       username,
       firstName,
       lastName,
-      emailToken,
-      emailTokenExpiry,
+      verificationCode,
+      verificationCodeExpiry,
     });
 
     await this.usersRepository.save(user);
-    await this.mailService.sendVerificationEmail(email, emailToken, firstName);
+    await this.mailService.sendVerificationEmail(email, verificationCode, firstName);
 
     return { message: 'Registration successful. Please check your email to verify your account.' };
   }
@@ -70,21 +70,21 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
-    if (user.emailValidatedAt) {
+    if (user.emailVerifiedAt) {
       throw new BadRequestException('Email already verified');
     }
 
-    if (user.emailToken !== token) {
+    if (user.verificationCode !== token) {
       throw new BadRequestException('Invalid verification token');
     }
 
-    if (!user.emailTokenExpiry || new Date() > user.emailTokenExpiry) {
+    if (!user.verificationCodeExpiry || new Date() > user.verificationCodeExpiry) {
       throw new BadRequestException('Verification token expired');
     }
 
-    user.emailValidatedAt = new Date();
-    user.emailToken = null;
-    user.emailTokenExpiry = null;
+    user.emailVerifiedAt = new Date();
+    user.verificationCode = null;
+    user.verificationCodeExpiry = null;
 
     await this.usersRepository.save(user);
 
@@ -100,7 +100,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    if (!user.emailValidatedAt) {
+    if (!user.emailVerifiedAt) {
       throw new UnauthorizedException('Please verify your email first');
     }
 
@@ -108,8 +108,8 @@ export class AuthService {
     const codeExpiry = new Date();
     codeExpiry.setMinutes(codeExpiry.getMinutes() + 10);
 
-    user.emailToken = code;
-    user.emailTokenExpiry = codeExpiry;
+    user.verificationCode = code;
+    user.verificationCodeExpiry = codeExpiry;
 
     await this.usersRepository.save(user);
     await this.mailService.send2FACode(email, code, user.firstName);
@@ -126,16 +126,16 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    if (user.emailToken !== code) {
+    if (user.verificationCode !== code) {
       throw new UnauthorizedException('Invalid 2FA code');
     }
 
-    if (!user.emailTokenExpiry || new Date() > user.emailTokenExpiry) {
+    if (!user.verificationCodeExpiry || new Date() > user.verificationCodeExpiry) {
       throw new UnauthorizedException('2FA code expired');
     }
 
-    user.emailToken = null;
-    user.emailTokenExpiry = null;
+    user.verificationCode = null;
+    user.verificationCodeExpiry = null;
     await this.usersRepository.save(user);
 
     const payload: JwtPayload = {
@@ -156,19 +156,19 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
-    if (user.emailValidatedAt) {
+    if (user.emailVerifiedAt) {
       throw new BadRequestException('Email already verified');
     }
 
-    const emailToken = this.generateRandomCode();
-    const emailTokenExpiry = new Date();
-    emailTokenExpiry.setHours(emailTokenExpiry.getHours() + 24);
+    const verificationCode = this.generateRandomCode();
+    const verificationCodeExpiry = new Date();
+    verificationCodeExpiry.setHours(verificationCodeExpiry.getHours() + 24);
 
-    user.emailToken = emailToken;
-    user.emailTokenExpiry = emailTokenExpiry;
+    user.verificationCode = verificationCode;
+    user.verificationCodeExpiry = verificationCodeExpiry;
 
     await this.usersRepository.save(user);
-    await this.mailService.sendVerificationEmail(email, emailToken, user.firstName);
+    await this.mailService.sendVerificationEmail(email, verificationCode, user.firstName);
 
     return { message: 'Verification email sent' };
   }
@@ -184,8 +184,8 @@ export class AuthService {
     const codeExpiry = new Date();
     codeExpiry.setMinutes(codeExpiry.getMinutes() + 10);
 
-    user.emailToken = code;
-    user.emailTokenExpiry = codeExpiry;
+    user.verificationCode = code;
+    user.verificationCodeExpiry = codeExpiry;
 
     await this.usersRepository.save(user);
     await this.mailService.send2FACode(email, code, user.firstName);

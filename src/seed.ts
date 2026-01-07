@@ -23,7 +23,7 @@ async function seed() {
       firstName: 'Admin',
       lastName: 'User',
       role: 'ADMIN',
-      emailValidatedAt: new Date(),
+      emailVerifiedAt: new Date(),
     });
 
     console.log('Admin user created:');

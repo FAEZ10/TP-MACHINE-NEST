@@ -14,7 +14,7 @@ import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { User } from './entities/user.entity';
-import { PublicEndpoint } from '../../common/decorators/public-endpoint.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -40,7 +40,7 @@ export class UsersController {
         githubUrl: 'https://github.com/johndoe',
         twitterUrl: 'https://twitter.com/johndoe',
         role: 'USER',
-        emailValidatedAt: '2024-01-15T10:00:00.000Z',
+        emailVerifiedAt: '2024-01-15T10:00:00.000Z',
         createdAt: '2024-01-15T10:00:00.000Z',
         updatedAt: '2024-01-15T10:00:00.000Z',
       },
@@ -69,7 +69,7 @@ export class UsersController {
         githubUrl: 'https://github.com/johndoe',
         twitterUrl: 'https://twitter.com/johndoe',
         role: 'USER',
-        emailValidatedAt: '2024-01-15T10:00:00.000Z',
+        emailVerifiedAt: '2024-01-15T10:00:00.000Z',
         createdAt: '2024-01-15T10:00:00.000Z',
         updatedAt: '2024-01-15T11:00:00.000Z',
       },
@@ -96,7 +96,7 @@ export class UsersController {
   }
 
   @Get(':username')
-  @PublicEndpoint()
+  @Public()
   @ApiOperation({ summary: 'Get public user profile by username' })
   @ApiParam({
     name: 'username',
@@ -119,7 +119,7 @@ export class UsersController {
         githubUrl: 'https://github.com/johndoe',
         twitterUrl: 'https://twitter.com/johndoe',
         role: 'USER',
-        emailValidatedAt: '2024-01-15T10:00:00.000Z',
+        emailVerifiedAt: '2024-01-15T10:00:00.000Z',
         createdAt: '2024-01-15T10:00:00.000Z',
         updatedAt: '2024-01-15T10:00:00.000Z',
         projects: [

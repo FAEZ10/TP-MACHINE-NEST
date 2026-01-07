@@ -33,7 +33,7 @@ Une plateforme pour les développeurs permettant de publier et découvrir des pr
 
 2. Installer les dépendances :
 ```bash
-npm install --legacy-peer-deps
+npm install 
 ```
 
 3. Créer le fichier d'environnement :

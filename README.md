@@ -57,7 +57,7 @@ docker compose exec postgres psql -U postgres -c "CREATE DATABASE devshowcase;"
 
 2. Installer les dépendances :
 ```bash
-npm install --legacy-peer-deps
+npm install 
 ```
 
 3. Créer l'utilisateur admin :

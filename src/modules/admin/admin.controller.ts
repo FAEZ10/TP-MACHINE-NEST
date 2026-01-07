@@ -12,7 +12,7 @@ import {
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { AdminService } from './admin.service';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { NestjsTpRole } from '../../common/enums/nestjs-tp-role.enum';
+import { UserRole } from '../../common/enums/user-role.enum';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { UpdateRoleDto } from './dto/update-role.dto';
 
@@ -20,7 +20,7 @@ import { UpdateRoleDto } from './dto/update-role.dto';
 @ApiBearerAuth()
 @Controller('admin')
 @UseGuards(RolesGuard)
-@Roles(NestjsTpRole.ADMIN)
+@Roles(UserRole.ADMIN)
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 

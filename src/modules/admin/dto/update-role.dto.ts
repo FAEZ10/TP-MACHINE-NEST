@@ -1,15 +1,15 @@
 import { IsEnum, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { NestjsTpRole } from '../../../common/enums/nestjs-tp-role.enum';
+import { UserRole } from '../../../common/enums/user-role.enum';
 
 export class UpdateRoleDto {
   @ApiProperty({
-    example: NestjsTpRole.ADMIN,
-    enum: NestjsTpRole,
+    example: UserRole.ADMIN,
+    enum: UserRole,
     description: 'New role for the user',
   })
-  @IsEnum(NestjsTpRole)
+  @IsEnum(UserRole)
   @IsNotEmpty()
-  role: NestjsTpRole;
+  role: UserRole;
 }
 

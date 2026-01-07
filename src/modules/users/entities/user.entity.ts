@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { NestjsTpRole } from '../../../common/enums/nestjs-tp-role.enum';
+import { UserRole } from '../../../common/enums/user-role.enum';
 import { DevProject } from '../../projects/entities/dev-project.entity';
 import { ProjectUpvote } from '../../projects/entities/project-upvote.entity';
 
@@ -49,10 +49,10 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: NestjsTpRole,
-    default: NestjsTpRole.USER,
+    enum: UserRole,
+    default: UserRole.USER,
   })
-  role: NestjsTpRole;
+  role: UserRole;
 
   @Column({ type: 'timestamp', nullable: true })
   emailValidatedAt: Date | null;

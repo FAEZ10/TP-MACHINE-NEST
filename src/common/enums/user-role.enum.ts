@@ -1,4 +1,4 @@
-export enum NestjsTpRole {
+export enum UserRole {
   USER = 'USER',
   ADMIN = 'ADMIN',
 }

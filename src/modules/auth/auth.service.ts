@@ -154,6 +154,7 @@ export class AuthService {
 
     if (!user) {
       throw new NotFoundException('User not found');
+      
     }
 
     if (user.emailVerifiedAt) {

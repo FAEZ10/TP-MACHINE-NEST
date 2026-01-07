@@ -1,0 +1,7 @@
+export enum ProjectStatus {
+  IN_DEVELOPMENT = 'IN_DEVELOPMENT',
+  LAUNCHED = 'LAUNCHED',
+  MAINTAINED = 'MAINTAINED',
+  ARCHIVED = 'ARCHIVED',
+}
+

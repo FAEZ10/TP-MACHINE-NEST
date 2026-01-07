@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification Email</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .content p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .token-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .token {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+        }
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .info-box p {
+            margin: 0;
+            color: #856404;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .brand {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bienvenue sur DevShowcase</h1>
+        </div>
+        
+        <div class="content">
+            <p>Bonjour <strong>{{firstName}}</strong>,</p>
+            
+            <p>Merci de vous être inscrit sur DevShowcase ! Pour finaliser votre inscription, veuillez vérifier votre adresse email en utilisant le code ci-dessous :</p>
+            
+            <div class="token-box">
+                <div class="token">{{token}}</div>
+            </div>
+            
+            <div class="info-box">
+                <p><strong>Ce code est valide pendant 24 heures.</strong></p>
+            </div>
+            
+            <p>Si vous n'avez pas créé de compte, vous pouvez ignorer cet email en toute sécurité.</p>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; {{year}} <span class="brand">DevShowcase</span>. Tous droits réservés.</p>
+            <p>Plateforme de publication et découverte de projets de développeurs</p>
+        </div>
+    </div>
+</body>
+</html>
+

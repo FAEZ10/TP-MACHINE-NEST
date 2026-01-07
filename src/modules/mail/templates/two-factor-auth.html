@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code de Vérification 2FA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .content p {
+            margin: 0 0 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .token-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .token {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 8px;
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .warning-box p {
+            margin: 0;
+            color: #856404;
+        }
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .danger-box p {
+            margin: 0;
+            color: #721c24;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .brand {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Vérification de Connexion</h1>
+        </div>
+        
+        <div class="content">
+            <p>Bonjour <strong>{{firstName}}</strong>,</p>
+            
+            <p>Une tentative de connexion à votre compte DevShowcase a été détectée. Pour confirmer qu'il s'agit bien de vous, veuillez utiliser le code de vérification ci-dessous :</p>
+            
+            <div class="token-box">
+                <div class="token">{{code}}</div>
+            </div>
+            
+            <div class="warning-box">
+                <p><strong>Ce code expire dans 10 minutes.</strong></p>
+            </div>
+            
+            <div class="danger-box">
+                <p><strong>Attention :</strong> Si vous n'êtes pas à l'origine de cette tentative de connexion, veuillez changer immédiatement votre mot de passe et contacter notre support.</p>
+            </div>
+            
+            <p><strong>Informations de connexion :</strong></p>
+            <ul>
+                <li>Date : {{date}}</li>
+                <li>Heure : {{time}}</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; {{year}} <span class="brand">DevShowcase</span>. Tous droits réservés.</p>
+            <p>Plateforme de publication et découverte de projets de développeurs</p>
+        </div>
+    </div>
+</body>
+</html>
+
